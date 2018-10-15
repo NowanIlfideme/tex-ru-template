@@ -1,0 +1,19 @@
+
+\renewcommand\appendixname{Приложение}
+\gdef\appendix{
+  \par
+  \setcounter{section}{0}
+  \setcounter{subsection}{0}
+  \def\thesection{\Asbuk{section}}
+  \def\section##1{
+    \refstepcounter{section}
+    \setcounter{table}{0}
+    \def\thetable{\Asbuk{section}.\arabic{table}}
+    \def\thefigure{\Asbuk{section}.\arabic{figure}}
+    \goodbreak\noindent{
+      \indent\Large\bf\hbox to 8.5em{\appendixname\ \thesection\hss}\hspace{0.8ex}##1
+    }
+    \nobreak\vspace{1em}\nobreak\noindent
+    \addcontentsline{toc}{chapter}{\hbox to 8.5em{\appendixname\ \thesection\hss}\hspace{0.8ex}##1}
+  }
+}

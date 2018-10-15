@@ -1,0 +1,22 @@
+
+\addto\captionsrussian{\renewcommand\figurename{Рисунок}}
+
+%Оформление подписи рисунка
+%\renewcommand \thefigure{\thesection.\@arabic\c@figure }
+%чтобы номер рисунка содержал номер главы (например, рисунок 2.1) надо закомментировать предыдущую строку
+\renewenvironment{figure}{%
+\let\@makecaption\@makefigurecaption
+\@float{figure}
+}%
+{%
+\addtocontents{lof}{ {\vskip 0.2em} }
+\end@float
+}
+
+\newcommand{\@makefigurecaption}[2]{%
+\vspace{\abovecaptionskip}%
+\sbox{\@tempboxa}{\normalsize #1 --- \normalsize #2}%
+\ifdim \wd\@tempboxa >\hsize {\center\hyphenpenalty=10000\normalsize #1 --- \normalsize #2 \par}%
+\else \global\@minipagefalse \hbox to \hsize
+{\hfil \hyphenpenalty=10000 \normalsize #1 --- \normalsize #2\hfil}%
+\fi \vspace{\belowcaptionskip}}

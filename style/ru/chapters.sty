@@ -1,0 +1,66 @@
+
+% Оформление глав, разделов и т.д.
+\makeatletter
+
+
+% Не подавлять абзацный отступ в главах
+\renewcommand{\chapter} {
+  \cleardoublepage\thispagestyle{plain}
+  \global\@topnum=0 \@afterindenttrue \secdef\@chapter\@schapter
+}
+
+% Оформление нумерованных глав
+\renewcommand{\@makechapterhead}[1] {
+  \vspace{36pt} % Пустое место вверху страницы
+  {
+    \centering
+    \parindent=18pt
+    \normalfont\Large\bfseries
+    \chaptername ~ \thechapter{} \par % Номер главы
+    #1 \par % Заголовок текста с новой строки
+    \nopagebreak % Не отрываем заголовок от текста
+    \vspace{36pt} % Пустое место между заголовком и текстом
+  }
+}
+
+% Оформление ненумерованных глав
+\renewcommand{\@makeschapterhead}[1] {
+  \vspace{36pt} % Пустое место вверху страницы
+  {
+    \centering
+    \parindent=18pt
+    \normalfont\Large\bfseries #1 \par
+    \nopagebreak % чтобы не оторвать заголовок от текста
+    \vspace{25pt} % между заголовком и текстом
+  }
+}
+
+% Оформление разделов
+\renewcommand{\section} {
+    \@startsection{section}
+                  {1}
+                  {18pt}
+                  {3.5ex plus 1ex minus .2ex}
+                  {2.3ex plus .2ex}
+                  {\normalfont\Large\bfseries\raggedright}
+}
+
+% Оформление подразделов
+\renewcommand{\subsection} {
+  \@startsection{subsection}
+                {2}
+                {18pt}
+                {3.25ex plus 1ex minus .2ex}
+                {1.5ex plus .2ex}
+                {\normalfont\large\bfseries\raggedright}
+}
+
+% Оформление подподразделов
+\renewcommand{\subsubsection} {
+  \@startsection{subsubsection}
+                {3}
+                {18pt}
+                {3.25ex plus 1ex minus .2ex}
+                {1.5ex plus .2ex}
+                {\normalfont\large\bfseries\raggedright}
+}
